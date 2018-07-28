@@ -1,0 +1,43 @@
+{
+  "name": "react-sample",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.18.0",
+    "bootstrap": "^4.1.1",
+    "cldr-data": "^32.0.1",
+    "concurrently": "^3.5.1",
+    "history": "^4.7.2",
+    "moment": "^2.22.2",
+    "react": "^16.4.1",
+    "react-block-ui": "^1.1.1",
+    "react-bootstrap": "^0.32.1",
+    "react-bootstrap-switch": "^15.5.3",
+    "react-bootstrap-table-next": "^0.1.12",
+    "react-bootstrap-toggle": "^2.3.1",
+    "react-dom": "^16.4.1",
+    "react-modal": "^3.5.1",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.2.2",
+    "react-router-redux": "^5.0.0-alpha.9",
+    "react-scripts": "1.1.1",
+    "react-spinners": "^0.3.2",
+    "react-table": "^6.8.2",
+    "react-widgets": "^4.3.2",
+    "react-widgets-moment": "^4.0.15",
+    "react-widgets-simple-number": "^4.1.11",
+    "reactstrap": "^6.2.0",
+    "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
+    "toastr": "^2.1.4",
+    "validator": "^10.4.0"
+  },
+  "scripts": {
+    "client": "concurrently --kill-others-on-fail \"npm run client\" \"npm run server\"",
+    "server": "cd server && nodemon server.js",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
