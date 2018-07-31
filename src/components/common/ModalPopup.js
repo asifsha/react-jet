@@ -1,22 +1,12 @@
 import React from 'react';
-import Modal from 'react-modal';
+import { Modal } from 'reactstrap';
+ 
 
-const customStyles = {
-    content : {
-      top                   : '50%',
-      left                  : '50%',
-      right                 : 'auto',
-      bottom                : 'auto',
-      marginRight           : '-50%',
-      transform             : 'translate(-50%, -50%)'
-    }
-  };
-
-  Modal.setAppElement('#root');
+  
   class ModalPopup extends React.Component {
     constructor(props) {
       super(props);
-        console.log('in model constructor');
+        
       this.state = {
         modalIsOpen: this.props.modalIsOpen
       };
@@ -24,12 +14,10 @@ const customStyles = {
       this.openModal = this.openModal.bind(this);
       this.afterOpenModal = this.afterOpenModal.bind(this);
       this.closeModal = this.closeModal.bind(this);
+      this.toggle = this.toggle.bind(this);
     }
 
-    componentWillReceiveProps(nextProps) {
-        console.log('in componentWillReceiveProps');
-        console.log(nextProps.modalIsOpen);
-
+    componentWillReceiveProps(nextProps) {     
         this.setState({
             modalIsOpen: nextProps.modalIsOpen
         })
@@ -38,6 +26,12 @@ const customStyles = {
   
     openModal() {
       this.setState({modalIsOpen: true});
+    }
+
+    toggle() {
+      this.setState({
+        modalIsOpen: !this.state.modalIsOpen
+      });
     }
   
     afterOpenModal() {
@@ -49,24 +43,16 @@ const customStyles = {
       this.setState({modalIsOpen: false});
     }
   
-    render() {
-        console.log('in popup render');
-        console.log(this.state.modalIsOpen);
-      return (
-
-        <div>
-          
+    render() {       
+      return (                
           <Modal
             isOpen={this.state.modalIsOpen}
-            onAfterOpen={this.afterOpenModal}
-            onRequestClose={this.closeModal}
-            style={customStyles}
-            contentLabel="Example Modal"
-          >
-            {this.props.children}
-           
-          </Modal>
-        </div>
+            toggle={this.toggle}
+            onClosed={this.closeModal}        
+            size={this.props.size}
+          >                      
+            {this.props.children}           
+          </Modal>        
       );
     }
   }

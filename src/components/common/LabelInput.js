@@ -5,7 +5,7 @@ import { Label } from 'reactstrap';
 
 const LabelInput = ({ name, label }) => {
     return (        
-            <Label htmlFor={name}>{label}</Label>        
+            <Label htmlFor={name}>{label}:</Label>        
     );
 };
 
