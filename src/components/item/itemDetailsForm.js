@@ -59,7 +59,7 @@ class ItemDetailsForm extends React.Component {
     }
 
     onCancel() {
-        this.redirect();
+        this.props.closeHandler();
     }
 
     itemFormInValid() {
@@ -110,7 +110,7 @@ class ItemDetailsForm extends React.Component {
                 <LoadingSpinner loading={this.state.saving} tag="div">                                                   
                 <div>
                     <Form >
-                        <FormGroup row >
+                        <FormGroup row >         
                             <Col sm={2} className="col-form-label text-right ">
                                 <LabelInput name="lblname" label="Name" />
                             </Col>

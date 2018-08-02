@@ -22,22 +22,32 @@ class Item extends Component {
         this.onAdd = this.onAdd.bind(this);
         this.onEdit = this.onEdit.bind(this);
         this.onDelete = this.onDelete.bind(this);
+      this.closeDetailsModal=this.closeDetailsModal.bind(this);
         this.state= { modalIsOpen : false};
 
         this.detailModal = React.createRef();
       }
 
       onSave = () => {
+        console.log('in save');
         this.detailModal.current.onSave();
       };
 
       onCancel = () => {
+        console.log('in cancel');
+        
         this.detailModal.current.onCancel();
+         
       };
 
     componentDidMount() {
         this.props.actions.GetItems();
     }
+  
+  closeDetailsModal()
+{
+  this.setState({modalIsOpen: false});
+}
 
     onAdd(event) {          
         event.preventDefault();        
@@ -62,7 +72,7 @@ class Item extends Component {
     render() {
         console.log('in item render');
         console.log(this.state.modalIsOpen);
-        let item = { id: '', name: '', date: '', price: 0, inStock: false, type: '' };
+        //let item = { id: '', name: '', date: '', price: 0, inStock: false, type: '' };
         return (
             <div className="App">
                 <header className="App-header">
@@ -113,10 +123,11 @@ class Item extends Component {
                 <DetailsModal  modalIsOpen={this.state.modalIsOpen} badgeHeader="Add - Item"
                  modalHeader="New Item"
                  onSave={this.onSave}
-                 onCancle={this.onCancel}
+                 onCancel={this.onCancel}
+                 
                  
                  >
-                      <div><ItemDetailsForm ref={this.detailModal} item={item}/></div>  
+                      <div><ItemDetailsForm ref={this.detailModal} item={this.props.item} closeHandler={this.closeDetailsModal}/></div>  
                 </DetailsModal>
             </div>
         );
@@ -127,10 +138,32 @@ Item.propTypes = {
     items: PropTypes.array
 };
 
+// function mapStateToProps(state, ownProps) {
+//     return {
+//         items: state.items
+//     };
+// }
+
+function getItemById(items, id) {
+    const item = items.filter(item => item.id == id);
+    if (item) return item[0]; //since filter returns an array, have to grab the first.
+    return null;
+}
+
 function mapStateToProps(state, ownProps) {
+    const itemId = ownProps.match.params.id; // fomr the path course/:id
+    let item = { id: '', name: '', date: '', price: 0, inStock: false, type: '' };
+
+    if (itemId && state.items.length > 0) {
+        item = getItemById(state.items, itemId);
+    }
+    console.log('mapstatetoprops');
+    console.log(item);
     return {
+        itemTypes: state.itemTypes,
+        item: item,
         items: state.items
-    };
+    }
 }
 
 const mapDispatchToProps = dispatch => ({
