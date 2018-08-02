@@ -44,7 +44,8 @@ class DetailsModal extends React.Component {
         return (
             <div>
                 <ModalPopup modalIsOpen={this.state.modalIsOpen} size='lg'>
-                    <ModalHeader>
+                    <ModalHeader >
+          
                         <Badge color="info">{this.props.badgeHeader}</Badge>
                         <div>                            
                             {this.props.modalHeader}

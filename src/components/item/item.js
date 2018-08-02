@@ -23,10 +23,17 @@ class Item extends Component {
         this.onEdit = this.onEdit.bind(this);
         this.onDelete = this.onDelete.bind(this);
       this.closeDetailsModal=this.closeDetailsModal.bind(this);
+      this.saveItem=this.saveItem.bind(this);
         this.state= { modalIsOpen : false};
 
         this.detailModal = React.createRef();
       }
+  
+  saveItem(item)
+  {
+    console.log('in saveitem parent');
+    return this.props.actions.saveItem(item);
+  }
 
       onSave = () => {
         console.log('in save');
@@ -127,7 +134,7 @@ class Item extends Component {
                  
                  
                  >
-                      <div><ItemDetailsForm ref={this.detailModal} item={this.props.item} closeHandler={this.closeDetailsModal}/></div>  
+                      <div><ItemDetailsForm ref={this.detailModal} item={this.props.item} closeHandler={this.closeDetailsModal} saveItem={this.saveItem}/></div>  
                 </DetailsModal>
             </div>
         );

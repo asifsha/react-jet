@@ -44,7 +44,8 @@ import { Modal } from 'reactstrap';
     }
   
     render() {       
-      return (                
+      return (
+        <div>          
           <Modal
             isOpen={this.state.modalIsOpen}
             toggle={this.toggle}
@@ -53,6 +54,7 @@ import { Modal } from 'reactstrap';
           >                      
             {this.props.children}           
           </Modal>        
+        </div>
       );
     }
   }

@@ -38,6 +38,11 @@ class ItemDetailsForm extends React.Component {
 
         this.onSave = this.onSave.bind(this);
         this.onCancel = this.onCancel.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleNumberChange = this.handleNumberChange.bind(this);
+        this.handleinStockChange = this.handleinStockChange.bind(this);
+        this.handleTypeChange = this.handleTypeChange.bind(this);
+        this.handleDateChange=this.handleDateChange.bind(this);
         momentLocalizer();   
 
     }
@@ -49,8 +54,9 @@ class ItemDetailsForm extends React.Component {
         if (this.itemFormInValid()) {
             return;
         }
-        this.setState({ saving: true });      
-        this.props.actions.saveItem(this.state.item)
+        this.setState({ saving: true });     
+       //this.props.saveItem(this.state.item);
+        this.props.saveItem(this.state.item)
             .then(() => this.redirect())
             .catch(error => {
                 ToastrPopup.error(error);
@@ -60,6 +66,49 @@ class ItemDetailsForm extends React.Component {
 
     onCancel() {
         this.props.closeHandler();
+    }
+  
+   handleinStockChange(e) {
+        let item = this.state.item;
+        item.inStock = e.id;
+        this.setState({ item: item });
+        console.log(this.state);
+    }
+
+    handleTypeChange(e) {
+        let item = this.state.item;
+        item.type = e.id;
+        this.setState({ item: item });
+        console.log(this.state);
+    }
+
+    handleDateChange(e) {
+        let item = this.state.item;
+        item.date = e.toLocaleDateString();
+        this.setState({ item: item });
+        console.log(this.state);
+        console.log(e.toLocaleDateString());
+    }
+
+    handleNumberChange(e) {
+        let item = this.state.item;
+        item.price = e;
+        this.setState({ item: item });
+        console.log(this.state);
+    }
+
+    handleChange(e) {
+        console.log(' in handle change');
+        console.log(e);
+        const name = e.target.name;
+        const value = e.target.value;
+        let item = this.state.item;
+        if (name == 'txtName')
+            item.name = e.target.value;
+        if (name == 'txtPrice')
+            item.price = e.target.value;
+        this.setState({ item: item });
+        console.log(this.state);
     }
 
     itemFormInValid() {
@@ -82,10 +131,10 @@ class ItemDetailsForm extends React.Component {
             formInvalid = true;
         }
         
-        if (validator.validateRequired(this.state.item.type)) {
-            errors.title  += '<br/>Please select a type.';
-            formInvalid = true;
-        }      
+//         if (validator.validateRequired(this.state.item.type)) {
+//             errors.title  += '<br/>Please select a type.';
+//             formInvalid = true;
+//         }      
        
         if (validator.validateRequired(this.state.item.date)) {
             errors.title += '<br/>Please enter valid date.';
