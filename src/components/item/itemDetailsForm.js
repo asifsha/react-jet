@@ -46,6 +46,14 @@ class ItemDetailsForm extends React.Component {
         momentLocalizer();   
 
     }
+  
+//     componentWillReceiveProps(nextProps) {
+//       console.log('in component receive props');
+//         this.setState({
+//             item: nextProps.item
+//         })
+
+//     }
     onSave() {
         //ToastrPopup.clear();
        // event.preventDefault();

@@ -22,9 +22,9 @@ class Item extends Component {
         this.onAdd = this.onAdd.bind(this);
         this.onEdit = this.onEdit.bind(this);
         this.onDelete = this.onDelete.bind(this);
-      this.closeDetailsModal=this.closeDetailsModal.bind(this);
-      this.saveItem=this.saveItem.bind(this);
-        this.state= { modalIsOpen : false};
+        this.closeDetailsModal=this.closeDetailsModal.bind(this);
+        this.saveItem=this.saveItem.bind(this);
+        this.state= { modalIsOpen : false , itemId : -1};
 
         this.detailModal = React.createRef();
       }
@@ -65,7 +65,10 @@ class Item extends Component {
       }
 
     onEdit() {
-        //createHistory .push('/course');
+        let item= getItemById(this.props.items, 1);
+      console.log(item);
+      console.log('in on edit tiem');
+        this.setState({modalIsOpen: true, itemId : 1, item : item});
       }    
       
       onDelete() {
@@ -127,14 +130,14 @@ class Item extends Component {
                             text: 'type'
                         }]} />
                 </div>               
-                <DetailsModal  modalIsOpen={this.state.modalIsOpen} badgeHeader="Add - Item"
-                 modalHeader="New Item"
+                <DetailsModal  modalIsOpen={this.state.modalIsOpen} badgeHeader={ this.state.itemId == -1 ? "Add - Item" : "Edit Item"}
+                 modalHeader={ this.state.itemId == -1 ? "New Item" : this.state.item.name}
                  onSave={this.onSave}
                  onCancel={this.onCancel}
                  
                  
                  >
-                      <div><ItemDetailsForm ref={this.detailModal} item={this.props.item} closeHandler={this.closeDetailsModal} saveItem={this.saveItem}/></div>  
+                      <div><ItemDetailsForm ref={this.detailModal} item={this.state.item} closeHandler={this.closeDetailsModal} saveItem={this.saveItem}/></div>  
                 </DetailsModal>
             </div>
         );
