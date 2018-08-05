@@ -22,62 +22,64 @@ class Item extends Component {
         this.onAdd = this.onAdd.bind(this);
         this.onEdit = this.onEdit.bind(this);
         this.onDelete = this.onDelete.bind(this);
-        this.closeDetailsModal=this.closeDetailsModal.bind(this);
-        this.saveItem=this.saveItem.bind(this);
-        this.state= { modalIsOpen : false , itemId : -1};
+        this.closeDetailsModal = this.closeDetailsModal.bind(this);
+        this.saveItem = this.saveItem.bind(this);
+        this.state = { modalIsOpen: false, item: {} };
 
         this.detailModal = React.createRef();
-      }
-  
-  saveItem(item)
-  {
-    console.log('in saveitem parent');
-    return this.props.actions.saveItem(item);
-  }
+        this.itemDetailsGrid = React.createRef();
+    }
 
-      onSave = () => {
+    saveItem(item) {
+        console.log('in saveitem parent');
+        return this.props.actions.saveItem(item);
+    }
+
+    onSave = () => {
         console.log('in save');
         this.detailModal.current.onSave();
-      };
+    };
 
-      onCancel = () => {
+    onCancel = () => {
         console.log('in cancel');
-        
+
         this.detailModal.current.onCancel();
-         
-      };
+
+    };
 
     componentDidMount() {
         this.props.actions.GetItems();
     }
-  
-  closeDetailsModal()
-{
-  this.setState({modalIsOpen: false});
-}
 
-    onAdd(event) {          
-        event.preventDefault();        
+    closeDetailsModal() {
+        this.setState({ modalIsOpen: false });
+    }
+
+    onAdd(event) {
+        event.preventDefault();
         //this.props.history.push('/itemDetails');
-        console.log('in add click');
-        this.setState({modalIsOpen: true});
-        
-      }
+        let item = { id: -1, name: '', date: '', price: 0, inStock: false, type: '' };
+        this.setState({ modalIsOpen: true, item : item });
+
+    }
 
     onEdit() {
-        let item= getItemById(this.props.items, 1);
-      console.log(item);
-      console.log('in on edit tiem');
-        this.setState({modalIsOpen: true, itemId : 1, item : item});
-      }    
-      
-      onDelete() {
-        //createHistory .push('/course');
-      }  
+        let selectedids=this.itemDetailsGrid.current.state.selectedRows;
+        console.log('in on edit tiem1');
+        console.log(selectedids);
+        let item = getItemById(this.props.items, selectedids);
+        console.log(item);
+        console.log('in on edit tiem');
+        this.setState({ modalIsOpen: true, itemId: 1, item: item });
+    }
 
-      myHandler() {
-          toastr.success('Good');
-      }
+    onDelete() {
+        //createHistory .push('/course');
+    }
+
+    myHandler() {
+        toastr.success('Good');
+    }
 
     render() {
         console.log('in item render');
@@ -90,25 +92,25 @@ class Item extends Component {
                 </header>
                 <DynamicButtonToolbar buttons={[{
                     id: 'btnadd',
-                    text: 'Add', 
-                    style:'warning', 
-                    handler:this.onAdd 
-                    },
-                    {
+                    text: 'Add',
+                    style: 'warning',
+                    handler: this.onAdd
+                },
+                {
                     id: 'btnedit',
-                    text: 'Edit', 
-                    style:'info',
-                    handler:this.onEdit                    
-                    },
-                    {
+                    text: 'Edit',
+                    style: 'info',
+                    handler: this.onEdit
+                },
+                {
                     id: 'btnDelete',
-                    text: 'Delete', 
-                    style:'info',
-                    handler:this.onDelete
-                    
-                    }]}/>                  
+                    text: 'Delete',
+                    style: 'info',
+                    handler: this.onDelete
+
+                }]} />
                 <div>
-                    <Grid data={this.props.items}
+                    <Grid  ref={this.itemDetailsGrid} data={this.props.items}
                         columns={[{
                             dataField: 'id',
                             text: 'ID',
@@ -129,15 +131,13 @@ class Item extends Component {
                             dataField: 'type',
                             text: 'type'
                         }]} />
-                </div>               
-                <DetailsModal  modalIsOpen={this.state.modalIsOpen} badgeHeader={ this.state.itemId == -1 ? "Add - Item" : "Edit Item"}
-                 modalHeader={ this.state.itemId == -1 ? "New Item" : this.state.item.name}
-                 onSave={this.onSave}
-                 onCancel={this.onCancel}
-                 
-                 
-                 >
-                      <div><ItemDetailsForm ref={this.detailModal} item={this.state.item} closeHandler={this.closeDetailsModal} saveItem={this.saveItem}/></div>  
+                </div>
+                <DetailsModal modalIsOpen={this.state.modalIsOpen} badgeHeader={this.state.item.id == -1 ? "Add - Item" : "Edit Item"}
+                    modalHeader={this.state.item.id == -1 ? "New Item" : this.state.item.name}
+                    onSave={this.onSave}
+                    onCancel={this.onCancel}
+                >
+                    <div><ItemDetailsForm ref={this.detailModal} item={this.state.item} closeHandler={this.closeDetailsModal} saveItem={this.saveItem} /></div>
                 </DetailsModal>
             </div>
         );

@@ -22,11 +22,11 @@ class Grid extends React.Component {
     
     render() {
 
-       let selectedRows=this.state.selectedRows;
+        let selectedRows=this.state.selectedRows;
         const selectRow = {
             mode: 'checkbox',
             clickToSelect: true, 
-            hideSelectColumn: true,
+            hideSelectColumn: false,
             bgColor: '#00BFFF',           
             onSelect: (row, isSelect, rowIndex, e) => {
                 console.log(row.id);
@@ -34,13 +34,21 @@ class Grid extends React.Component {
                 console.log(rowIndex);
                 console.log(e);                
                 if(isSelect)
-                    selectedRows.push(rowIndex);                
+                    selectedRows.push(row.id);                
                 else
-                    selectedRows=selectedRows.filter(item => item !== rowIndex);                                
+                    selectedRows=selectedRows.filter(item => item !== row.id);                                
                 
                 //this.setState ({ selectedRows:selectedRows });
-                this.state.selectedRows=selectedRows;
-                console.log(this.state);
+                function updateSelectedRows(state, props) {
+                    // Stop updates and re-renders if I've had enough pizzas.
+                    state.selectedRows=selectedRows;
+                    
+                     return null;     
+                  }
+                  
+                   this.setState(updateSelectedRows);
+               // this.state.selectedRows=selectedRows;
+                console.log("selectedrows :" + this.state.selectedRows);
               },
               onSelectAll: (isSelect, rows, e) => {
                 console.log(isSelect);
@@ -50,13 +58,7 @@ class Grid extends React.Component {
         };
 
         return (
-            <div>
-                {/* <ReactTable
-                    data={this.props.data}
-                    columns={this.props.columns}
-                    defaultPageSize={10}
-                    className="-striped -highlight"                                        
-                /> */}
+            <div>          
 
                 <BootstrapTable keyField='id' data={this.props.data} columns={this.props.columns}
                     selectRow={selectRow} />
@@ -68,8 +70,7 @@ class Grid extends React.Component {
 
 Grid.propTypes = {
     data: PropTypes.array,
-    columns: PropTypes.array,
-    selectedRows : PropTypes.array
+    columns: PropTypes.array    
 };
 
 export default Grid;
