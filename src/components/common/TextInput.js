@@ -1,8 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Label, Col, FormGroup, Input, Form } from 'reactstrap';
-import DateInput from './DateInput';
-import LabelInput from './LabelInput';
+import { Input } from 'reactstrap';
+
 
 const TextInput = ({ name, onChange, placeholder, value, error }) => {
    

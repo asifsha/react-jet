@@ -4,36 +4,19 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as itemActions from '../../actions/itemActions';
-import PropTypes from 'prop-types';
-
-
-import { Button, Form, FormGroup, ControlLabel, HelpBlock, FormControl, Col, Checkbox, Label, Input } from 'reactstrap';
-import { Combobox, DateTimePicker } from 'react-widgets';
-import Switch from 'react-bootstrap-switch';
-
-import Grid from '../common/Grid';
+import { Form, FormGroup, Col} from 'reactstrap';
 import DetailButtonToolbar from '../common/DetailButtonToolbar';
 import TextInput from '../common/TextInput';
 import DateInput from '../common/DateInput';
 import LabelInput from '../common/LabelInput';
 import NumberInput from '../common/NumberInput';
-import ToggleButton from '../common/ToggleButton';
 import ComboBoxInput from '../common/ComboBoxInput';
 import ToggleInput from '../common/ToggleInput';
 import LoadingSpinner from '../common/LoadingSpinner';
 import ToastrPopup from '../common/ToastrPoup';
-import serviceApi from '../../api/serviceApi';
 import validator from '../../helper/validator';
-import ModalPopup from '../common/ModalPopup';
-//import toastr from 'toastr';
-
-import Moment from 'moment'
 import momentLocalizer from 'react-widgets-moment';
-
-//import 'toastr/build/toastr.css';
 import 'react-widgets/dist/css/react-widgets.css';
-
-import history from '../../store/store';
 
 class ItemDetails extends Component {
 
@@ -185,11 +168,11 @@ class ItemDetails extends Component {
         console.log(' in handle change');
         console.log(e);
         const name = e.target.name;
-        const value = e.target.value;
+        
         let item = this.state.item;
-        if (name == 'txtName')
+        if (name === 'txtName')
             item.name = e.target.value;
-        if (name == 'txtPrice')
+        if (name === 'txtPrice')
             item.price = e.target.value;
         this.setState({ item: item });
         console.log(this.state);
@@ -278,7 +261,7 @@ class ItemDetails extends Component {
 // };
 
 function getItemById(items, id) {
-    const item = items.filter(item => item.id == id);
+    const item = items.filter(item => item.id === id);
     if (item) return item[0]; //since filter returns an array, have to grab the first.
     return null;
 }

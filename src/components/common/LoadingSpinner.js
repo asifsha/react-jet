@@ -6,10 +6,7 @@ import 'react-block-ui/style.css';
 
 
 class LoadingSpinner extends React.Component {
-    constructor(props, context) {
-        super(props, context);
-    }
-    render() {
+   render() {
         return (
             <div>
                 <BlockUi tag={this.props.tag} blocking={this.props.loading} >
@@ -19,15 +16,6 @@ class LoadingSpinner extends React.Component {
         );
     }
 }
-
-// const LoadingSpinner = ({ loading, tag, child }) => {
-
-//     return (
-//        <BlockUi tag={tag}  blocking={loading} >
-//            {this.props.children}
-//        </BlockUi>
-//     );
-// };
 
 LoadingSpinner.propTypes = {
     loading: PropTypes.bool.isRequired

@@ -6,13 +6,6 @@ import { connect } from 'react-redux'
 import * as gridActions from '../../actions/gridActions';
 import PropTypes from 'prop-types';
 
-// export default () => (
-//   <div>
-//     <h1>About Us</h1>
-//     <p>Hello Medium!</p>
-//   </div>
-// )
-
 class App extends Component {
   state = {
     response: '',

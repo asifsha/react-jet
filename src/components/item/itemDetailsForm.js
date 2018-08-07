@@ -1,15 +1,13 @@
 import React from 'react';
 
-import { Button, Form, FormGroup, ControlLabel, 
-    HelpBlock, FormControl, Col, Checkbox, Label, Input,Badge,
-    ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Form, FormGroup,  
+     Col} from 'reactstrap';
 
 
 import TextInput from '../common/TextInput';
 import DateInput from '../common/DateInput';
 import LabelInput from '../common/LabelInput';
 import NumberInput from '../common/NumberInput';
-import ToggleButton from '../common/ToggleButton';
 import ComboBoxInput from '../common/ComboBoxInput';
 import ToggleInput from '../common/ToggleInput';
 import LoadingSpinner from '../common/LoadingSpinner';
@@ -17,7 +15,7 @@ import ToastrPopup from '../common/ToastrPoup';
 
 import validator from '../../helper/validator';
 
-import Moment from 'moment'
+
 import momentLocalizer from 'react-widgets-moment';
 
 
@@ -93,38 +91,29 @@ class ItemDetailsForm extends React.Component {
     handleDateChange(e) {
         let item = this.state.item;
         item.date = e.toLocaleDateString();
-        this.setState({ item: item });
-        console.log(this.state);
-        console.log(e.toLocaleDateString());
+        this.setState({ item: item });        
     }
 
     handleNumberChange(e) {
         let item = this.state.item;
         item.price = e;
-        this.setState({ item: item });
-        console.log(this.state);
+        this.setState({ item: item });        
     }
 
-    handleChange(e) {
-        console.log(' in handle change');
-        console.log(e);
-        const name = e.target.name;
-        const value = e.target.value;
+    handleChange(e) {        
+        const name = e.target.name;        
         let item = this.state.item;
-        if (name == 'txtName')
+        if (name === 'txtName')
             item.name = e.target.value;
-        if (name == 'txtPrice')
+        if (name === 'txtPrice')
             item.price = e.target.value;
-        this.setState({ item: item });
-        console.log(this.state);
+        this.setState({ item: item });        
     }
 
     itemFormInValid() {
         let formInvalid = false;
         let errors = {};    
-        errors.title='';
-
-        console.log(this.state);
+        errors.title='';        
 
         if (validator.validateRequired(this.state.item.name)) {
             errors.title = '<br/>Please enter name.';
@@ -139,11 +128,6 @@ class ItemDetailsForm extends React.Component {
             formInvalid = true;
         }
         
-//         if (validator.validateRequired(this.state.item.type)) {
-//             errors.title  += '<br/>Please select a type.';
-//             formInvalid = true;
-//         }      
-       
         if (validator.validateRequired(this.state.item.date)) {
             errors.title += '<br/>Please enter valid date.';
             formInvalid = true;
@@ -156,7 +140,6 @@ class ItemDetailsForm extends React.Component {
         }
 
         this.setState({ errors: errors });
-
         
         return formInvalid;
     }

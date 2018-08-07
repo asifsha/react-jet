@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { ButtonGroup, Button } from 'reactstrap';
-import PropTypes from 'prop-types';
+
 
 class DynamicButtonToolbar extends React.Component {
 

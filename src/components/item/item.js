@@ -5,12 +5,8 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import * as itemActions from '../../actions/itemActions';
 import PropTypes from 'prop-types';
-import ButtonToolbar from '../common/ButtonToolbar';
 import DetailsModal from '../common/DetailsModal';
 import toastr from 'toastr';
-//import {createHistory } from 'history/createBrowserHistory';
-import history from '../../store/store';
-import { withRouter } from 'react-router-dom';
 import DynamicButtonToolbar from '../common/DynamicButtonToolbar';
 import ItemDetailsForm from './itemDetailsForm';
 
@@ -132,8 +128,8 @@ class Item extends Component {
                             text: 'type'
                         }]} />
                 </div>
-                <DetailsModal modalIsOpen={this.state.modalIsOpen} badgeHeader={this.state.item.id == -1 ? "Add - Item" : "Edit Item"}
-                    modalHeader={this.state.item.id == -1 ? "New Item" : this.state.item.name}
+                <DetailsModal modalIsOpen={this.state.modalIsOpen} badgeHeader={this.state.item.id === -1 ? "Add - Item" : "Edit Item"}
+                    modalHeader={this.state.item.id === -1 ? "New Item" : this.state.item.name}
                     onSave={this.onSave}
                     onCancel={this.onCancel}
                 >
@@ -155,7 +151,7 @@ Item.propTypes = {
 // }
 
 function getItemById(items, id) {
-    const item = items.filter(item => item.id == id);
+    const item = items.filter(item => item.id === id);
     if (item) return item[0]; //since filter returns an array, have to grab the first.
     return null;
 }

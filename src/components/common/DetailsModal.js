@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-    Modal, Badge,
+    Badge,
     ModalHeader, ModalBody, ModalFooter
 } from 'reactstrap';
 
