@@ -2,7 +2,7 @@
 
 Inspired by [react-slingshot](https://github.com/coryhouse/react-slingshot) & [create-react-app](https://github.com/facebook/create-react-app)
 
-go get a jet start for your apps :rocket:
+Get a jet start for your apps :rocket:
 
 A framework to quickly develop react apps using existing libraries, all the components can be changed from one point only. Below components are used in this framework.
 
