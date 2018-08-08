@@ -4,7 +4,7 @@ Inspired by [react-slingshot](https://github.com/coryhouse/react-slingshot) & [c
 
 Get a jet start for your apps :rocket:
 
-A framework to quickly develop react apps using existing libraries, all the components can be changed from one point only. Below components are used in this framework.
+A framework to quickly develop react apps using existing libraries, all the components can be changed from one point. Below components are used in this framework.
 
 - [axios](https://github.com/axios/axios)
 - [react-block-ui](https://github.com/Availity/react-block-ui)
