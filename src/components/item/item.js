@@ -53,19 +53,14 @@ class Item extends Component {
 
     onAdd(event) {
         event.preventDefault();
-        //this.props.history.push('/itemDetails');
         let item = { id: -1, name: '', date: '', price: 0, inStock: false, type: '' };
-        this.setState({ modalIsOpen: true, item : item });
+        this.setState({ modalIsOpen: true, item: item });
 
     }
 
     onEdit() {
-        let selectedids=this.itemDetailsGrid.current.state.selectedRows;
-        console.log('in on edit tiem1');
-        console.log(selectedids);
-        let item = getItemById(this.props.items, selectedids);
-        console.log(item);
-        console.log('in on edit tiem');
+        let selectedids = this.itemDetailsGrid.current.state.selectedRows;
+        let item = getItemById(this.props.items, selectedids[0]);
         this.setState({ modalIsOpen: true, itemId: 1, item: item });
     }
 
@@ -106,7 +101,7 @@ class Item extends Component {
 
                 }]} />
                 <div>
-                    <Grid  ref={this.itemDetailsGrid} data={this.props.items}
+                    <Grid ref={this.itemDetailsGrid} data={this.props.items}
                         columns={[{
                             dataField: 'id',
                             text: 'ID',

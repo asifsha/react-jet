@@ -9,10 +9,9 @@ import DateInput from '../common/DateInput';
 import LabelInput from '../common/LabelInput';
 import NumberInput from '../common/NumberInput';
 import ComboBoxInput from '../common/ComboBoxInput';
-import ToggleInput from '../common/ToggleInput';
 import LoadingSpinner from '../common/LoadingSpinner';
 import ToastrPopup from '../common/ToastrPoup';
-
+import ToggleButton from '../common/ToggleButton';
 import validator from '../../helper/validator';
 
 
@@ -45,23 +44,12 @@ class ItemDetailsForm extends React.Component {
 
     }
   
-//     componentWillReceiveProps(nextProps) {
-//       console.log('in component receive props');
-//         this.setState({
-//             item: nextProps.item
-//         })
-
-//     }
     onSave() {
-        //ToastrPopup.clear();
-       // event.preventDefault();
-        //ModalPopup.openModal();
-       
+         
         if (this.itemFormInValid()) {
             return;
         }
-        this.setState({ saving: true });     
-       //this.props.saveItem(this.state.item);
+        this.setState({ saving: true });       
         this.props.saveItem(this.state.item)
             .then(() => this.redirect())
             .catch(error => {
@@ -168,8 +156,8 @@ class ItemDetailsForm extends React.Component {
                             <Col sm={2} className="col-form-label text-right ">
                                 <LabelInput name="instock" label="In Stock" />
                             </Col>
-                            <Col sm={4}>
-                                <ToggleInput data={[{ 'id': 1, 'name': 'Yes' }, { 'id': 2, 'name': 'No' }]} valueField='id' textField='name' onChange={this.handleinStockChange} />
+                            <Col sm={4}>                            
+                                 <ToggleButton value={this.state.item.inStock} onChange={this.handleinStockChange}></ToggleButton>
                             </Col>
                             <Col sm={2} className="col-form-label text-right ">
                                 <LabelInput name="lblType" label="Type" />

@@ -1,46 +1,36 @@
 import React from 'react';
+import Switch from "react-switch";
 import PropTypes from 'prop-types';
-import { Button, ButtonGroup } from 'reactstrap';
-
 
 class ToggleButton extends React.Component {
 
-    constructor() {
-        super();
-
-        this.state = {
-            selected: false
-        };
-
-        this.onCheckboxBtnClick = this.onCheckboxBtnClick.bind(this);
+    constructor(props) {
+        super(props);       
+        this.state = { checked: this.props.value };
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    onCheckboxBtnClick() {
-        // let selected = this.state.selected;
-        // selected = !selected;
-        //console.log(this.state.selected);
-        // this.setState({ selected: selected });
+    handleChange(checked) {
+        this.setState({ checked });
         this.setState(function (prevState) {
             return { selected: !prevState.selected };
         });
-
-        this.props.onChange();
-        //console.log(this.state.selected);
+        this.props.onChange(checked);               
     }
 
 
 
     render() {
         return (
-
-            <ButtonGroup>
-                <Button color={this.state.selected ? 'info' : 'light'} onClick={() => this.onCheckboxBtnClick(true)} active={this.state.selected}>Yes</Button>
-                <Button color={!this.state.selected ? 'info' : 'light'} onClick={() => this.onCheckboxBtnClick(false)} >No</Button>
-            </ButtonGroup>
-
+          <label htmlFor="normal-switch">            
+            <Switch
+              onChange={this.handleChange}
+              checked={this.state.checked}
+              id="normal-switch"
+            />
+          </label>
         );
-
-    }
+      }
 }
 
 
