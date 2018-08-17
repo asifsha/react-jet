@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 import BootstrapTable from 'react-bootstrap-table-next';
 
+
 import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 
 
@@ -11,9 +12,7 @@ import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 class Grid extends React.Component {
 
     constructor() {
-        super();
-        //const selectedRows = [];        
-
+        super();             
         this.state = {
             selectedRows : []
         };
@@ -34,9 +33,15 @@ class Grid extends React.Component {
                 console.log(rowIndex);
                 console.log(e);                
                 if(isSelect)
-                    selectedRows.push(row.id);                
+                   {
+                        selectedRows.push(row.id);
+                    }
                 else
-                    selectedRows=selectedRows.filter(item => item !== row.id);                                
+                   { 
+                       console.log('unselect');
+                       selectedRows=selectedRows.filter(item => item !== row.id);                                
+                   }
+
                 
                 //this.setState ({ selectedRows:selectedRows });
                 function updateSelectedRows(state, props) {
@@ -60,8 +65,17 @@ class Grid extends React.Component {
         return (
             <div>          
 
-                <BootstrapTable keyField='id' data={this.props.data} columns={this.props.columns}
-                    selectRow={selectRow} />
+                <BootstrapTable 
+                keyField='id' 
+                data={this.props.data} 
+                columns={this.props.columns}
+                selectRow={selectRow}
+                striped
+                hover
+                condensed
+                bordered={ false }
+                headerClasses="Grid-Header"
+                />
                 <br />
             </div>
         );

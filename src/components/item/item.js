@@ -6,9 +6,11 @@ import { connect } from 'react-redux'
 import * as itemActions from '../../actions/itemActions';
 import PropTypes from 'prop-types';
 import DetailsModal from '../common/DetailsModal';
-import toastr from 'toastr';
 import DynamicButtonToolbar from '../common/DynamicButtonToolbar';
+import ToastrPopup from '../common/ToastrPoup';
 import ItemDetailsForm from './itemDetailsForm';
+import {Container, Badge} from 'reactstrap';
+
 
 
 class Item extends Component {
@@ -59,27 +61,34 @@ class Item extends Component {
     }
 
     onEdit() {
-        let selectedids = this.itemDetailsGrid.current.state.selectedRows;
+        let selectedids = this.itemDetailsGrid.current.state.selectedRows;       
+        if(selectedids.length !== 1)
+        {
+            ToastrPopup.info('Please select one record to edit.');
+            return;
+        }
         let item = getItemById(this.props.items, selectedids[0]);
         this.setState({ modalIsOpen: true, itemId: 1, item: item });
     }
 
     onDelete() {
-        //createHistory .push('/course');
-    }
-
-    myHandler() {
-        toastr.success('Good');
-    }
-
+        let selectedids = this.itemDetailsGrid.current.state.selectedRows;       
+        if(selectedids.length !== 1)
+        {
+            ToastrPopup.info('Please select one record to delete.');
+            return;
+        }
+        //let item = getItemById(this.props.items, selectedids[0]);
+    }    
     render() {
         console.log('in item render');
         console.log(this.state.modalIsOpen);
         //let item = { id: '', name: '', date: '', price: 0, inStock: false, type: '' };
         return (
-            <div className="App">
+            <Container >
                 <header className="App-header">
-                    <h1 className="App-title">Items</h1>
+                    <h1 className="App-title"><Badge color="info">Items</Badge></h1>
+                    
                 </header>
                 <DynamicButtonToolbar buttons={[{
                     id: 'btnadd',
@@ -110,17 +119,17 @@ class Item extends Component {
                         }, {
                             dataField: 'name',
                             text: 'Item Name',
-                            sort: true
+                            sort: true                            
                         }, {
                             dataField: 'price',
                             text: 'Item Price',
-                            sort: true
+                            sort: true                            
                         }, {
                             dataField: 'inStockStr',
-                            text: 'inStock'
+                            text: 'In Stock'
                         }, {
                             dataField: 'type',
-                            text: 'type'
+                            text: 'Type'
                         }]} />
                 </div>
                 <DetailsModal modalIsOpen={this.state.modalIsOpen} badgeHeader={this.state.item.id === -1 ? "Add - Item" : "Edit Item"}
@@ -130,7 +139,7 @@ class Item extends Component {
                 >
                     <div><ItemDetailsForm ref={this.detailModal} item={this.state.item} closeHandler={this.closeDetailsModal} saveItem={this.saveItem} /></div>
                 </DetailsModal>
-            </div>
+            </Container>
         );
     }
 }

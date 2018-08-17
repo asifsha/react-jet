@@ -13,6 +13,10 @@ class ToastrPopup {
         toastr.success(message);
     }
 
+    static info(message){
+        toastr.info(message);
+    }
+
     static clear(){
         toastr.clear();
     }
