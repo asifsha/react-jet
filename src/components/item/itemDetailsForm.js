@@ -13,6 +13,7 @@ import LoadingSpinner from '../common/LoadingSpinner';
 import ToastrPopup from '../common/ToastrPoup';
 import ToggleButton from '../common/ToggleButton';
 import validator from '../../helper/validator';
+import 'react-widgets/dist/css/react-widgets.css';
 
 
 import momentLocalizer from 'react-widgets-moment';

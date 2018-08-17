@@ -7,8 +7,7 @@ const Header = () => (
 
     <Navbar color="light" light expand="md">
         <NavLink tag={Link} href='/' to='/'>Home</NavLink >
-        <NavLink tag={Link} href='/about-us' to='/about-us'>About</NavLink >
-        <NavLink tag={Link} href='/items' to='/items'>Items</NavLink >
+        <NavLink tag={Link} href='/about-us' to='/about-us'>About</NavLink >        
     </Navbar>
 
 )

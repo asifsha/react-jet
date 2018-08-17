@@ -15,7 +15,7 @@ const items = [
   {
     id: '2',
     name: 'Mac Book',
-    type: 'Eelectronics',
+    type: 'Electronics',
     price: 2500,
     inStock: true,
     date:'1-Jul-2017'

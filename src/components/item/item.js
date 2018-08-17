@@ -87,7 +87,7 @@ class Item extends Component {
         return (
             <Container >
                 <header className="App-header">
-                    <h1 className="App-title"><Badge color="info">Items</Badge></h1>
+                    <h2 className="App-title"><Badge color="info">Items</Badge></h2>
                     
                 </header>
                 <DynamicButtonToolbar buttons={[{

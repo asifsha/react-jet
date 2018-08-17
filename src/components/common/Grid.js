@@ -74,7 +74,7 @@ class Grid extends React.Component {
                 hover
                 condensed
                 bordered={ false }
-                headerClasses="Grid-Header"
+               
                 />
                 <br />
             </div>

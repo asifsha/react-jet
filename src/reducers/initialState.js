@@ -1,8 +1,4 @@
-export default {
-    
-            count: 0,
-            isIncrementing: false,
-            isDecrementing: false,
+export default {               
             data: [],
             items:[],
             itemTypes:[]

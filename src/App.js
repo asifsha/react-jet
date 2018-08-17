@@ -1,21 +1,35 @@
-// import React, { Component } from 'react';
-// import logo from './logo.svg';
-// import './App.css';
+import React from 'react';
+import { Route } from 'react-router-dom'
+import About from './components/about';
+import Header from './components/common/Header';
+import Item from './components/item/item';
+import { withRouter } from 'react-router';
+import { connect } from 'react-redux';
 
-// class App extends Component {
-//   render() {
-//     return (
-//       <div className="App">
-//         <header className="App-header">
-//           <img src={logo} className="App-logo" alt="logo" />
-//           <h1 className="App-title">Welcome to React</h1>
-//         </header>
-//         <p className="App-intro">
-//           To get started, edit <code>src/App.js</code> and save to reload.
-//         </p>
-//       </div>
-//     );
-//   }
-// }
 
-// export default App;
+
+const App = () => (
+    <div>
+        <header>
+            <Header />
+        </header>
+
+        <main>
+            <Route exact path="/" component={Item} />
+            <Route exact path="/about-us" component={About} />
+        </main>
+    </div>
+)
+
+function mapStatesToProps(state, ownProps) {
+    return {
+        items: state.items
+    };
+}
+
+const mapDispatchToProps = dispatch => ({
+    // actions: bindActionCreators(itemActions, dispatch)
+}
+)
+
+export default withRouter(connect(mapStatesToProps, mapDispatchToProps)(App));
