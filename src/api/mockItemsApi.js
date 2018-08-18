@@ -10,7 +10,7 @@ const items = [
     type: 'Electronics',
     price: 1000,
     inStock: true,
-    date:'1-Oct-2017'
+    date:'1/Oct/2017'
   },
   {
     id: '2',
@@ -18,7 +18,7 @@ const items = [
     type: 'Electronics',
     price: 2500,
     inStock: true,
-    date:'1-Jul-2017'
+    date:'8/17/2018'
   },
   {
     id: '3',
@@ -26,7 +26,7 @@ const items = [
     type: 'Furniture',
     price: 500,
     inStock: true,
-    date:'15-Mar-2017'
+    date:'15/Mar/2017'
   },
    {
     id: '4',
@@ -34,7 +34,7 @@ const items = [
     type: 'Furniture',
     price: 250,
     inStock: true,
-    date:'5-Oct-2017'
+    date:'5/Oct/2017'
   },
   {
     id: '5',
@@ -42,7 +42,7 @@ const items = [
     type: 'HouseHold',
     price: 20,
     inStock: false,
-    date:'2-Oct-2017'
+    date:'2/Oct/2017'
   }
 ];
 

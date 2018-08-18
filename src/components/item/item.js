@@ -9,7 +9,7 @@ import DetailsModal from '../common/DetailsModal';
 import DynamicButtonToolbar from '../common/DynamicButtonToolbar';
 import ToastrPopup from '../common/ToastrPoup';
 import ItemDetailsForm from './itemDetailsForm';
-import {Container, Badge} from 'reactstrap';
+import { Container, Badge } from 'reactstrap';
 
 
 
@@ -57,29 +57,34 @@ class Item extends Component {
         event.preventDefault();
         let item = { id: -1, name: '', date: '', price: 0, inStock: false, type: '' };
         this.setState({ modalIsOpen: true, item: item });
-
     }
 
     onEdit() {
-        let selectedids = this.itemDetailsGrid.current.state.selectedRows;       
-        if(selectedids.length !== 1)
-        {
+        let selectedids = this.itemDetailsGrid.current.state.selectedRows;
+        if (selectedids.length !== 1) {
             ToastrPopup.info('Please select one record to edit.');
             return;
         }
         let item = getItemById(this.props.items, selectedids[0]);
+        console.log(item);
         this.setState({ modalIsOpen: true, itemId: 1, item: item });
+        this.itemDetailsGrid.current.setState({ selectedRows: [] });
     }
 
     onDelete() {
-        let selectedids = this.itemDetailsGrid.current.state.selectedRows;       
-        if(selectedids.length !== 1)
-        {
+        let selectedids = this.itemDetailsGrid.current.state.selectedRows;
+        if (selectedids.length !== 1) {
             ToastrPopup.info('Please select one record to delete.');
             return;
         }
-        //let item = getItemById(this.props.items, selectedids[0]);
-    }    
+        let item = getItemById(this.props.items, selectedids[0]);
+        this.props.actions.deleteItem(this.state.item)
+            .then(() => this.refreshGrid())
+            .catch(error => {
+                ToastrPopup.error(error);
+                this.setState({ saving: false });
+            });
+    }
     render() {
         console.log('in item render');
         console.log(this.state.modalIsOpen);
@@ -88,7 +93,7 @@ class Item extends Component {
             <Container >
                 <header className="App-header">
                     <h2 className="App-title"><Badge color="info">Items</Badge></h2>
-                    
+
                 </header>
                 <DynamicButtonToolbar buttons={[{
                     id: 'btnadd',
@@ -119,11 +124,11 @@ class Item extends Component {
                         }, {
                             dataField: 'name',
                             text: 'Item Name',
-                            sort: true                            
+                            sort: true
                         }, {
                             dataField: 'price',
                             text: 'Item Price',
-                            sort: true                            
+                            sort: true
                         }, {
                             dataField: 'inStockStr',
                             text: 'In Stock'

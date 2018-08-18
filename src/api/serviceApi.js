@@ -40,8 +40,23 @@ class ServiceApi {
             //resolve(([]));
         }
         );
-
-
+    }    
+    static deleteItem() {
+        return new Promise((resolve, reject) => {
+            axios.post('https://107d3e83-6963-4a9f-9963-8e5b93599b20.mock.pstmn.io/deleteItem')
+                .then(function (response) {
+                    console.log(response.data);
+                    resolve((response.data));
+                })
+                .catch(function (error) {
+                    reject(error);
+                })
+                .then(function () {
+            
+                });
+            
+        }
+        );
     }
 }
 

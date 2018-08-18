@@ -27,11 +27,8 @@ class ItemDetailsForm extends React.Component {
             item: Object.assign({}, this.props.item),
             errors: {},
             saving: false,
-            isToggle: false,
-            cSelected: [],
-            itemTypes: [],
-            count: 1,
-            loading : false
+            isToggle: false,            
+            itemTypes: []            
         };
 
         this.onSave = this.onSave.bind(this);
@@ -52,7 +49,7 @@ class ItemDetailsForm extends React.Component {
         }
         this.setState({ saving: true });       
         this.props.saveItem(this.state.item)
-            .then(() => this.redirect())
+            .then(() => this.onCancel())
             .catch(error => {
                 ToastrPopup.error(error);
                 this.setState({ saving: false });
@@ -111,11 +108,7 @@ class ItemDetailsForm extends React.Component {
         if (validator.validateRequired(this.state.item.price) || validator.validateIntegerWithMin(this.state.item.price,1)) {
             errors.title += '<br/>Please enter valid price.';
             formInvalid = true;
-        }
-        if (validator.validateIntegerWithMinMax(this.state.item.inStock, 1, 2)) {
-            errors.title += '<br/>Please select in stock.';
-            formInvalid = true;
-        }
+        }       
         
         if (validator.validateRequired(this.state.item.date)) {
             errors.title += '<br/>Please enter valid date.';
@@ -172,7 +165,7 @@ class ItemDetailsForm extends React.Component {
                                 <LabelInput name="lblDate" label="Date" />
                             </Col>
                             <Col sm={4}>
-                                <DateInput name="dpDate" onChange={this.handleDateChange} />                                
+                                <DateInput name="dpDate" defaultValue={this.state.item.date} onChange={this.handleDateChange} />                                
                             </Col>
                         </FormGroup>
                     </Form>

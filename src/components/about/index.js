@@ -6,8 +6,8 @@ export default () => (
     <div>
       <h2><Badge color="info">About Us</Badge></h2>
       <p>
-        react-jet
-      </p>      
+        A framework to quickly get started with react.
+      </p>
     </div>
   </Container>
 );

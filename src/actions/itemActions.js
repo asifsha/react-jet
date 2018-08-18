@@ -57,6 +57,10 @@ export const updateItemSuccess = (item) => {
   return { type: types.UPDATE_ITEMS_SUCCESS, item };
 }
 
+export const deleteItemSuccess = (item) => {
+  return { type: types.DELETE_ITEMS_SUCCESS, item };
+}
+
 export const saveItem=(item) => {
   return dispatch => {      
       return ServiceApi.saveItem(item).then(savedItem => {
@@ -70,16 +74,13 @@ export const saveItem=(item) => {
   };
 }
 
-// export function saveCourse(course) {
-//   return function (dispatch, getState) {
-//       dispatch(beginAjaxCall());
-//       return courseApi.saveCourse(course).then(savedCourse => {
-//           course.id ? dispatch(updateCourseSuccess(savedCourse)) :
-//               dispatch(createCourseSuccess(savedCourse));
-//       }).catch(error => {
-//           dispatch(ajaxCallError(error));            
-//           throw error;
-//       });
-
-//   };
-// }
+export const deleteItem=(item) => {
+  return dispatch => {      
+      return ServiceApi.deleteItem(item).then(deletedItem => {
+          dispatch(deleteItemSuccess(deletedItem)) ;
+      }).catch(error => {
+         // dispatch(ajaxCallError(error));            
+          throw error;
+      });
+  };
+}

@@ -18,7 +18,12 @@ export default (state = initialState.items, action) => {
                 ...state.filter(item => item.id !== action.item.id),
                 Object.assign({}, action.item)
             ];
-      
+        
+        case types.DELETE_ITEMS_SUCCESS:
+        return [
+            ...state.filter(item => item.id !== action.item.id)
+        ];
+            
         default:
             return state;
     }
