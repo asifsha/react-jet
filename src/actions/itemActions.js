@@ -1,10 +1,9 @@
 import * as types from './actionTypes';
-import ItemApi from '../api/mockItemsApi';
 import ServiceApi from '../api/serviceApi';
 
 export const GetItems = () => {
   return dispatch => {
-    return ItemApi.getAllItems().then(items => {
+    return ServiceApi.getItems().then(items => {
       dispatch(loadItemsSuccess(items));
     }).catch(error => {
       throw (error);
@@ -16,23 +15,6 @@ export const GetItems = () => {
 export const loadItemsSuccess = (items) => {
   return {type: types.GET_ITEMS_SUCCESS, items};
 }
-
-
-// export const GetItemTypes = () => {
-//   return dispatch => {
-//     return ItemApi.getAllItems().then(items => {
-//       dispatch(loadItemTypesSuccess(items));
-//     }).catch(error => {
-//       throw (error);
-//     });
-
-//   }
-// }
-
-// export const loadItemTypesSuccess = (items) => {
-//   return {type: types.GET_ITEMS_TYPES_SUCCESS, items};
-// }
-
 
 export const GetItemTypes = () => {
   return dispatch => {

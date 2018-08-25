@@ -27,8 +27,7 @@ class ItemDetailsForm extends React.Component {
             item: Object.assign({}, this.props.item),
             errors: {},
             saving: false,
-            isToggle: false,            
-            itemTypes: []            
+            isToggle: false                 
         };
 
         this.onSave = this.onSave.bind(this);
@@ -110,10 +109,10 @@ class ItemDetailsForm extends React.Component {
             formInvalid = true;
         }       
         
-        if (validator.validateRequired(this.state.item.date)) {
-            errors.title += '<br/>Please enter valid date.';
-            formInvalid = true;
-        }                   
+        // if (validator.validateRequired(this.state.item.date)) {
+        //     errors.title += '<br/>Please enter valid date.';
+        //     formInvalid = true;
+        // }                   
 
         if(formInvalid)
         {
@@ -127,6 +126,8 @@ class ItemDetailsForm extends React.Component {
     }
 
     render() {
+        console.log('in item form render');
+        console.log(this.props.itemTypes);
         return (
             <div >          
                 <LoadingSpinner loading={this.state.saving} tag="div">                                                   

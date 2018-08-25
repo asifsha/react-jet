@@ -6,10 +6,21 @@ class ServiceApi {
 
         return new Promise((resolve, reject) => {
 
-            axios.get('https://107d3e83-6963-4a9f-9963-8e5b93599b20.mock.pstmn.io/getTypes')
+            axios.get('/types')
                 .then(function (response) {
-                    console.log(response.data);
-                    resolve((response.data));
+                    if (response.data != null)
+                    {
+                        var arr=response.data.map(
+                            x => { 
+                                var type = { id: x._id, name:x.name };
+                                return type;
+                         });          
+                         console.log('after type mas');
+                         console.log(arr);              
+                        resolve(arr);
+                    }                        
+                    else
+                        resolve(response.data);
                 })
                 .catch(function (error) {
                     reject(error);
@@ -24,12 +35,21 @@ class ServiceApi {
 
     }
 
-    static saveItem() {
+    static getItems() {
         return new Promise((resolve, reject) => {
-            axios.post('https://107d3e83-6963-4a9f-9963-8e5b93599b20.mock.pstmn.io/saveItem')
-                .then(function (response) {
-                    console.log(response.data);
-                    resolve((response.data));
+            axios.get('/items')
+                .then(function (response) {                    
+                    if (response.data != null)
+                    {
+                        var arr=response.data.map(
+                            x => { 
+                                var item = { id: x._id, name:x.name, price: x.price, type: x.type, date: x.date };
+                                return item;
+                         });                        
+                        resolve(arr);
+                    }                        
+                    else
+                        resolve(response.data);
                 })
                 .catch(function (error) {
                     reject(error);
@@ -40,10 +60,45 @@ class ServiceApi {
             //resolve(([]));
         }
         );
-    }    
-    static deleteItem() {
+    }
+
+    static saveItem(item) {
         return new Promise((resolve, reject) => {
-            axios.post('https://107d3e83-6963-4a9f-9963-8e5b93599b20.mock.pstmn.io/deleteItem')
+            console.log('in save api');
+            console.log(item);
+            if (item.id !== -1) {
+                axios.put('/items/' + item.id, item)
+                    .then(function (response) {
+                        console.log(response.data);
+                        resolve((response.data));
+                    })
+                    .catch(function (error) {
+                        reject(error);
+                    })
+                    .then(function () {
+                        // always executed
+                    });
+                //resolve(([]));
+            }
+            else {
+                axios.post('/items', item)
+                    .then(function (response) {
+                        console.log(response.data);
+                        resolve((response.data));
+                    })
+                    .catch(function (error) {
+                        reject(error);
+                    })
+                    .then(function () {
+                        // always executed
+                    });
+            }
+        }
+        );
+    }
+    static deleteItem(item) {
+        return new Promise((resolve, reject) => {
+            axios.delete('/items/' + item.id)
                 .then(function (response) {
                     console.log(response.data);
                     resolve((response.data));
@@ -52,9 +107,9 @@ class ServiceApi {
                     reject(error);
                 })
                 .then(function () {
-            
+
                 });
-            
+
         }
         );
     }

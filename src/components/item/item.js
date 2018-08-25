@@ -22,7 +22,7 @@ class Item extends Component {
         this.onDelete = this.onDelete.bind(this);
         this.closeDetailsModal = this.closeDetailsModal.bind(this);
         this.saveItem = this.saveItem.bind(this);
-        this.state = { modalIsOpen: false, item: {} };
+        this.state = { modalIsOpen: false, item: {}, itemTypes: [] };
 
         this.detailModal = React.createRef();
         this.itemDetailsGrid = React.createRef();
@@ -47,6 +47,7 @@ class Item extends Component {
 
     componentDidMount() {
         this.props.actions.GetItems();
+        this.props.actions.GetItemTypes();
     }
 
     closeDetailsModal() {
@@ -78,7 +79,7 @@ class Item extends Component {
             return;
         }
         let item = getItemById(this.props.items, selectedids[0]);
-        this.props.actions.deleteItem(this.state.item)
+        this.props.actions.deleteItem(item)
             .then(() => this.refreshGrid())
             .catch(error => {
                 ToastrPopup.error(error);
@@ -87,7 +88,8 @@ class Item extends Component {
     }
     render() {
         console.log('in item render');
-        console.log(this.state.modalIsOpen);
+        
+        console.log(this.props.itemTypes);
         //let item = { id: '', name: '', date: '', price: 0, inStock: false, type: '' };
         return (
             <Container >
@@ -142,7 +144,7 @@ class Item extends Component {
                     onSave={this.onSave}
                     onCancel={this.onCancel}
                 >
-                    <div><ItemDetailsForm ref={this.detailModal} item={this.state.item} closeHandler={this.closeDetailsModal} saveItem={this.saveItem} /></div>
+                    <div><ItemDetailsForm ref={this.detailModal} item={this.state.item} itemTypes={this.props.itemTypes} closeHandler={this.closeDetailsModal} saveItem={this.saveItem} /></div>
                 </DetailsModal>
             </Container>
         );
@@ -166,17 +168,17 @@ function getItemById(items, id) {
 }
 
 function mapStateToProps(state, ownProps) {
-    const itemId = ownProps.match.params.id; // fomr the path course/:id
-    let item = { id: '', name: '', date: '', price: 0, inStock: false, type: '' };
+    // const itemId = ownProps.match.params.id; // fomr the path course/:id
+    // let item = { id: '', name: '', date: '', price: 0, inStock: false, type: '' };
 
-    if (itemId && state.items.length > 0) {
-        item = getItemById(state.items, itemId);
-    }
+    // if (itemId && state.items.length > 0) {
+    //     item = getItemById(state.items, itemId);
+    // }
     console.log('mapstatetoprops');
-    console.log(item);
+    console.log(state.itemTypes);
     return {
-        itemTypes: state.itemTypes,
-        item: item,
+         itemTypes: state.itemTypes,
+        // item: item,
         items: state.items
     }
 }
