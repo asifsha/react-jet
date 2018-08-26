@@ -14,9 +14,7 @@ class ServiceApi {
                             x => { 
                                 var type = { id: x._id, name:x.name };
                                 return type;
-                         });          
-                         console.log('after type mas');
-                         console.log(arr);              
+                         });                                  
                         resolve(arr);
                     }                        
                     else
@@ -43,9 +41,12 @@ class ServiceApi {
                     {
                         var arr=response.data.map(
                             x => { 
-                                var item = { id: x._id, name:x.name, price: x.price, type: x.type, date: x.date };
+                                var item = { id: x._id, name:x.name, price: x.price,
+                                     type: x.type, date: x.date, inStock:x.inStock === undefined ? false : x.inStock };
                                 return item;
-                         });                        
+                         });    
+                         console.log('after maps');
+                         console.log(arr);                    
                         resolve(arr);
                     }                        
                     else
@@ -69,8 +70,11 @@ class ServiceApi {
             if (item.id !== -1) {
                 axios.put('/items/' + item.id, item)
                     .then(function (response) {
+                        console.log('response.data');
                         console.log(response.data);
-                        resolve((response.data));
+                        let l= { id:response.data._id, name: response.data.name, date : response.data.date,
+                            price: response.data.price, type:response.data.type , inStock: response.data.inStock }
+                        resolve((l));
                     })
                     .catch(function (error) {
                         reject(error);
@@ -84,7 +88,9 @@ class ServiceApi {
                 axios.post('/items', item)
                     .then(function (response) {
                         console.log(response.data);
-                        resolve((response.data));
+                        let l= { id:response.data._id, name: response.data.name, date : response.data.date,
+                            price: response.data.price, type:response.data.type , inStock: response.data.inStock }
+                        resolve((l));
                     })
                     .catch(function (error) {
                         reject(error);
@@ -100,8 +106,9 @@ class ServiceApi {
         return new Promise((resolve, reject) => {
             axios.delete('/items/' + item.id)
                 .then(function (response) {
+                    console.log('delete api data');
                     console.log(response.data);
-                    resolve((response.data));
+                    resolve((item));
                 })
                 .catch(function (error) {
                     reject(error);

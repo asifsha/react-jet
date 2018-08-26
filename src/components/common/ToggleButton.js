@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 class ToggleButton extends React.Component {
 
     constructor(props) {
-        super(props);       
+        super(props);          
         this.state = { checked: this.props.value };
         this.handleChange = this.handleChange.bind(this);
     }
 
     handleChange(checked) {
-        this.setState({ checked });
+        //this.setState({ checked });
         this.setState(function (prevState) {
             return { selected: !prevState.selected };
         });

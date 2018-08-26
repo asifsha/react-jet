@@ -80,7 +80,7 @@ class Item extends Component {
         }
         let item = getItemById(this.props.items, selectedids[0]);
         this.props.actions.deleteItem(item)
-            .then(() => this.refreshGrid())
+            .then()
             .catch(error => {
                 ToastrPopup.error(error);
                 this.setState({ saving: false });
