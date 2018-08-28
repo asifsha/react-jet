@@ -10,8 +10,7 @@ class ToggleButton extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(checked) {
-        //this.setState({ checked });
+    handleChange(checked) {       
         this.setState(function (prevState) {
             return { selected: !prevState.selected };
         });

@@ -33,10 +33,10 @@ class Grid extends React.Component {
             hideSelectColumn: false,
             bgColor: '#00BFFF',
             onSelect: (row, isSelect, rowIndex, e) => {
-                console.log(row.id);
-                console.log(isSelect);
-                console.log(rowIndex);
-                console.log(e);
+                // console.log(row.id);
+                // console.log(isSelect);
+                // console.log(rowIndex);
+                // console.log(e);
                 selectedRows=[];
                 selectedRows.push(row.id);
                 // if (isSelect) {
@@ -46,12 +46,12 @@ class Grid extends React.Component {
                 //     selectedRows = selectedRows.filter(item => item !== row.id);
                 // }
                 this.setState(this.updateSelectedRows(this.state, selectedRows));
-                console.log("selectedrows :" + this.state.selectedRows);
+                //console.log("selectedrows :" + this.state.selectedRows);
             },
             onSelectAll: (isSelect, rows, e) => {
-                console.log(isSelect);
-                console.log(rows);
-                console.log(e);
+                // console.log(isSelect);
+                // console.log(rows);
+                // console.log(e);
                 // if (isSelect) {
                 //     rows.forEach(row => {
                 //         selectedRows.push(row.id);
@@ -61,7 +61,7 @@ class Grid extends React.Component {
                 //     selectedRows = [];
                 // }
                 this.setState(this.updateSelectedRows(this.state, selectedRows));
-                console.log("selectedrows :" + this.state.selectedRows);
+                //console.log("selectedrows :" + this.state.selectedRows);
             }
         };
 

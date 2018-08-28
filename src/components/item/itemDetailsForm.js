@@ -63,14 +63,14 @@ class ItemDetailsForm extends React.Component {
         let item = this.state.item;
         item.inStock = e.id;
         this.setState({ item: item });
-        console.log(this.state);
+        
     }
 
     handleTypeChange(e) {
         let item = this.state.item;
         item.type = e.id;
         this.setState({ item: item });
-        console.log(this.state);
+        
     }
 
     handleDateChange(e) {
@@ -125,9 +125,7 @@ class ItemDetailsForm extends React.Component {
         return formInvalid;
     }
 
-    render() {
-        console.log('in item form render');
-        console.log(this.props.itemTypes);
+    render() {        
         return (
             <div >          
                 <LoadingSpinner loading={this.state.saving} tag="div">                                                   

@@ -3,8 +3,7 @@ import { DropdownList  } from 'react-widgets';
 
 
 
-const ComboBoxInput = ({ name, onChange, placeholder, data,  value, error,valueField, textField}) => {
- console.log('data : ' + data);
+const ComboBoxInput = ({ name, onChange, placeholder, data,  value, error,valueField, textField}) => { 
     return (
         <DropdownList filter            
             data={data}

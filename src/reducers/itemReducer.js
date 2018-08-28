@@ -13,10 +13,7 @@ export default (state = initialState.items, action) => {
                 Object.assign({}, action.item)
             ];
 
-        case types.UPDATE_ITEMS_SUCCESS:
-        console.log('in update store');
-        console.log(state);
-        console.log(action.item.id);
+        case types.UPDATE_ITEMS_SUCCESS:        
             return [
                 ...state.filter(item => item.id !== action.item.id),
                 Object.assign({}, action.item)

@@ -28,18 +28,15 @@ class Item extends Component {
         this.itemDetailsGrid = React.createRef();
     }
 
-    saveItem(item) {
-        console.log('in saveitem parent');
+    saveItem(item) {        
         return this.props.actions.saveItem(item);
     }
 
-    onSave = () => {
-        console.log('in save');
+    onSave = () => {        
         this.detailModal.current.onSave();
     };
 
-    onCancel = () => {
-        console.log('in cancel');
+    onCancel = () => {       
 
         this.detailModal.current.onCancel();
 
@@ -66,8 +63,7 @@ class Item extends Component {
             ToastrPopup.info('Please select one record to edit.');
             return;
         }
-        let item = getItemById(this.props.items, selectedids[0]);
-        console.log(item);
+        let item = getItemById(this.props.items, selectedids[0]);        
         this.setState({ modalIsOpen: true, itemId: 1, item: item });
         this.itemDetailsGrid.current.setState({ selectedRows: [] });
     }
@@ -86,10 +82,7 @@ class Item extends Component {
                 this.setState({ saving: false });
             });
     }
-    render() {
-        console.log('in item render');
-        
-        console.log(this.props.itemTypes);
+    render() {      
         //let item = { id: '', name: '', date: '', price: 0, inStock: false, type: '' };
         return (
             <Container >
@@ -134,10 +127,9 @@ class Item extends Component {
                         }, {
                             dataField: 'inStockStr',
                             text: 'In Stock'
-                        }, {
-                            dataField: 'type',
-                            text: 'Type'
-                        }]} />
+                        }
+                        
+                        ]} />
                 </div>
                 <DetailsModal modalIsOpen={this.state.modalIsOpen} badgeHeader={this.state.item.id === -1 ? "Add - Item" : "Edit Item"}
                     modalHeader={this.state.item.id === -1 ? "New Item" : this.state.item.name}
@@ -155,12 +147,6 @@ Item.propTypes = {
     items: PropTypes.array
 };
 
-// function mapStateToProps(state, ownProps) {
-//     return {
-//         items: state.items
-//     };
-// }
-
 function getItemById(items, id) {
     const item = items.filter(item => item.id === id);
     if (item) return item[0]; //since filter returns an array, have to grab the first.
@@ -168,17 +154,11 @@ function getItemById(items, id) {
 }
 
 function mapStateToProps(state, ownProps) {
-    // const itemId = ownProps.match.params.id; // fomr the path course/:id
-    // let item = { id: '', name: '', date: '', price: 0, inStock: false, type: '' };
-
-    // if (itemId && state.items.length > 0) {
-    //     item = getItemById(state.items, itemId);
-    // }
-    console.log('mapstatetoprops');
-    console.log(state.itemTypes);
+    
+    
     return {
-         itemTypes: state.itemTypes,
-        // item: item,
+        itemTypes: state.itemTypes,
+    
         items: state.items
     }
 }

@@ -9,8 +9,7 @@ const rootReducer= combineReducers({
     
     grid,
     items,
-    itemTypes
-    //ajaxCallsInProgress
+    itemTypes    
 });
 
 export default rootReducer;
