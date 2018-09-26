@@ -1,6 +1,6 @@
 # react-jet
 
-Inspired by [react-slingshot](https://github.com/coryhouse/react-slingshot) & [create-react-app](https://github.com/facebook/create-react-app)
+Inspired by @coryhouse [react-slingshot](https://github.com/coryhouse/react-slingshot) & [create-react-app](https://github.com/facebook/create-react-app)
 
 Get a jet start for your apps :rocket:
 
