@@ -21,3 +21,11 @@ A framework to quickly develop react apps using existing libraries, all the comp
 - [toastr](https://github.com/CodeSeven/toastr) - Notification to show any type of messages
 ![toastr](https://github.com/asifsha/react-jet/blob/master/demo/toastr.gif)
 - [validator](https://github.com/chriso/validator.js) - Validate user input
+
+## Installation 
+Clone this repository and use it.
+
+## API Integration
+This app requires to connect with REST API, you can use ![RESTAPI](https://github.com/asifsha/react-jet-api) or create your own, that api uses mangodb atlas, the models are seeder is there so you just need to provide credentials for mangodb atlas account.
+
+ 
