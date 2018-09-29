@@ -23,7 +23,7 @@ A framework to quickly develop react apps using existing libraries, all the comp
 - [validator](https://github.com/chriso/validator.js) - Validate user input
 
 ## Installation 
-Clone this repository, cd <foldername>, npm install, npm start.
+Clone this repository, cd *foldername*, npm install, npm start.
 
 ## API Integration
 This app requires to connect with REST API, you can use ![RESTAPI](https://github.com/asifsha/react-jet-api) or create your own, that api uses mangodb atlas, the models are seeder is there so you just need to provide credentials for mangodb atlas account.
