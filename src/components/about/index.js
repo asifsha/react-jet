@@ -6,7 +6,7 @@ export default () => (
     <div>
       <h2><Badge color="info">About Us</Badge></h2>
       <p>
-        A framework to quickly get started with react.
+        A framework to quickly get started with react. automatic deployment is added.
       </p>
     </div>
   </Container>
