@@ -32,9 +32,7 @@
     "toastr": "^2.1.4",
     "validator": "^10.4.0"
   },
-  "scripts": {
-    "client": "concurrently --kill-others-on-fail \"npm run client\" \"npm run server\"",
-    "server": "cd server && nodemon server.js",
+  "scripts": {    
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
